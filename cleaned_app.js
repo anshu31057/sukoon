@@ -790,6 +790,8 @@ playResourceAudio(audioId) {
         btnPause.disabled = true;
     }
 
+
+    
     function stopTimer() {
         clearInterval(intervalId);
 
