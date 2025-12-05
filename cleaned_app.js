@@ -13,6 +13,42 @@ class WellnessPortal {
 
         this.init();
     }
+// ---------------------
+// Mobile menu helpers
+// ---------------------
+toggleMobileMenu() {
+    // toggles mobile nav visibility when hamburger clicked
+    const nav = document.querySelector('.nav-menu') || document.getElementById('nav-menu');
+    const togg = document.getElementById('nav-toggle') || document.querySelector('.nav-toggle');
+
+    if (!nav) return;
+    const isOpen = nav.classList.contains('open') || nav.classList.contains('active') || nav.style.display === 'block';
+
+    if (isOpen) {
+        // close
+        nav.classList.remove('open','active','show');
+        nav.style.display = '';
+        if (togg) togg.classList.remove('is-active');
+    } else {
+        // open
+        nav.classList.add('open','active');
+        nav.style.display = 'block';
+        if (togg) togg.classList.add('is-active');
+    }
+}
+
+closeMobileMenu() {
+    // closes mobile nav safely
+    const nav = document.querySelector('.nav-menu') || document.getElementById('nav-menu');
+    const togg = document.getElementById('nav-toggle') || document.querySelector('.nav-toggle');
+
+    if (nav) {
+        nav.classList.remove('open','active','show');
+        // if inline style was used to show, hide it
+        if (nav.style) nav.style.display = '';
+    }
+    if (togg) togg.classList.remove('is-active');
+}
 
     init() {
         this.setupEventListeners();
@@ -791,7 +827,7 @@ playResourceAudio(audioId) {
     }
 
 
-    
+
     function stopTimer() {
         clearInterval(intervalId);
 
@@ -871,7 +907,7 @@ playResourceAudio(audioId) {
 
     function saveMood() {
         if (!selectedMood) {
-            moodMsg.textContent = "Pehle mood choose karo!";
+            moodMsg.textContent = "Please Select Any Mood First!";
             moodMsg.style.color = "crimson";
             return;
         }
